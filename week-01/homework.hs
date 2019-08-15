@@ -67,41 +67,19 @@ exercise2 = animationOf treeController
 colorFactory :: Double -> Double -> Double -> Color
 colorFactory r g b = RGB (r/255) (g/255) (b/255)
 
-groundColor :: Color
+groundColor, storageColor, boxBgColor, boxFgColor, wallColor :: Color
 groundColor = colorFactory 222 214 174
-
-storageColor :: Color
 storageColor = colorFactory 214 149 133
-
-boxBgColor :: Color
 boxBgColor = colorFactory 141 44 0
-
-boxFgColor :: Color
 boxFgColor = colorFactory 186 101 12
-
-wallColor :: Color
 wallColor = colorFactory 161 149 85
 
-tile :: Picture
+tile, wall, ground, storage, box :: Picture
 tile = solidRectangle 1 1
-
-wall :: Picture
 wall = colored wallColor tile
-
-ground :: Picture
 ground = colored groundColor tile
-
-storage :: Picture
 storage = colored storageColor (solidCircle 0.2) & ground
-
-box :: Picture
 box = colored boxFgColor (solidRectangle 0.7 0.7) & colored boxBgColor tile
-
-prettyPicture :: Picture
-prettyPicture = translated 0 1 wall
-    & translated 0 0 ground
-    & translated 1 1 storage
-    & translated 1 0 box
 
 drawTile :: Int -> Picture
 drawTile i
